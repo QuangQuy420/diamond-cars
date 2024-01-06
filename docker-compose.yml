@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: diamond-cars
+    ports:
+      - '3000:3000'
+    env_file: .env # Load variables from the .env file
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - MONGODB_URI=$DATABASE_URL
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
