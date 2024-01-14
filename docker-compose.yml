@@ -8,14 +8,17 @@ services:
     container_name: diamond-cars
     ports:
       - '3000:3000'
-    env_file: .env # Load variables from the .env file
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - MONGODB_URI=$DATABASE_URL
 
   mongodb:
     image: mongo:latest
+    env_file: .env # Load variables from the .env file
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGODB_URI: $DATABASE_URL
+      INIT_WAIT_SEC: 3
     ports:
       - '27017:27017'
