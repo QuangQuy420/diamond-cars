@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { SubmitButton } from '@/app/(auth)/components/submitButton';
-import signUp from '@/app/actions/auth/signup';
+import { signUp } from '@/app/actions/auth';
 import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
 
@@ -14,7 +14,6 @@ const SignUpForm = () => {
         message: null,
     }
     const [state, formAction] = useFormState(signUp, initialState);
-    console.log(state);
 
     const router = useRouter();
     if (state?.status === 'success') {

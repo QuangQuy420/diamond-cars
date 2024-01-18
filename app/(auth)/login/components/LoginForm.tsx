@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { SubmitButton } from '@/app/(auth)/components/submitButton';
-import login from '@/app/actions/auth/login';
+import { login } from '@/app/actions/auth';
 import { useFormState } from 'react-dom';
 import { GoogleSignInButton, GithubSignInButton } from './authButton';
 

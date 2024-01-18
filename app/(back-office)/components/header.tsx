@@ -13,7 +13,6 @@ export default function Header(props: IHeaderProps) {
     useEffect(() => {
         const fetchUser = async () => {
             const session = await getSession();
-            console.log('client', session);
 
             try {
                 // @ts-ignore

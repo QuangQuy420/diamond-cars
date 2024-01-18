@@ -15,16 +15,19 @@ model User {
   email    String   @unique
   password String
   role     Role     @default(USER)
+  name     String?
+  avatar   String?
   // Relation 1-1 to Profile.
   profile  Profile?
 }
 
 model Profile {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  bio    String
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique @db.ObjectId
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  phoneNumber String
+  bio         String
+  address     String
+  user        User   @relation(fields: [userId], references: [id])
+  userId      String @unique @db.ObjectId
 }
 
 enum Role {

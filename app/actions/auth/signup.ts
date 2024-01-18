@@ -11,13 +11,12 @@ import bcrypt from 'bcryptjs';
  * @param {Object} formData The form data containing email, password, and password confirmation fields.
  * @returns {{message: string, errors: ZodError[]|string, status: string}}
  */
-export default async function signUp(prevState, formData) {
+export async function signUp(prevState, formData) {
     const result = SignUpSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
         password_confirm: formData.get('password_confirm'),
     });
-    console.log('result', result);
 
 
     // Validate form signUp
@@ -45,6 +44,15 @@ export default async function signUp(prevState, formData) {
                 email: result.data.email,
                 password: password,
                 role: 'USER',
+                name: result.data.email,
+                avatar: 'abcd',
+                profile: {
+                    create: {
+                        phoneNumber: '0385610163',
+                        bio: 'hahaha',
+                        address: 'Saigon City',
+                    }
+                }
             }
         })
 

@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
  * @param {Object} formData The form data containing email and password fields.
  * @returns {{message: string, errors: ZodError[]|string, status: string}}
  */
-export default async function login(prevState, formData) {
+export async function login(prevState, formData) {
     const result = LoginSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
