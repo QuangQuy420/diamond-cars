@@ -3,6 +3,7 @@
 import { SignUpSchema } from "@/prisma/zod";
 import prisma from '@/prisma/db';
 import bcrypt from 'bcryptjs';
+import { revalidatePath } from "next/cache";
 
 /**
  * SignUp a new user based on the provided form data.
@@ -11,7 +12,7 @@ import bcrypt from 'bcryptjs';
  * @param {Object} formData The form data containing email, password, and password confirmation fields.
  * @returns {{message: string, errors: ZodError[]|string, status: string}}
  */
-export async function signUp(prevState, formData) {
+export async function signUp(prevState, formData: FormData) {
     const result = SignUpSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -38,12 +39,13 @@ export async function signUp(prevState, formData) {
     }
 
     try {
+        console.log('hehehehhee');
+
         const password = await bcrypt.hash(result.data.password, 10);
         const newUser = await prisma.user.create({
             data: {
                 email: result.data.email,
                 password: password,
-                role: 'USER',
                 name: result.data.email,
                 avatar: 'abcd',
                 profile: {
@@ -57,6 +59,7 @@ export async function signUp(prevState, formData) {
         })
 
         if (newUser) {
+            // revalidatePath("/");
             return {
                 message: 'Signup successfully!',
                 errors: '',

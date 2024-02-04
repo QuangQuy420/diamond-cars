@@ -1,5 +1,5 @@
-import Header from '@/app/(back-office)/components/header';
 import '@/app/globals.css'
+import { Header, Navbar } from '@/app/(back-office)/components';
 
 export const metadata = {
   title: 'Next.js',
@@ -14,8 +14,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <div className='flex'>
+          <Navbar />
+          <div className='grow'>
+            <Header />
+            <div className='bg-gray-100'>
+              {children}
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   )

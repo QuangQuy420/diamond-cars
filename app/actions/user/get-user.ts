@@ -9,6 +9,21 @@ export async function getUserById(id: string) {
         // get user by ID.
         const user = await prisma.user.findUnique({
             where: { id: id },
+            select: {
+                email: true,
+                name: true,
+                role: true,
+                avatar: true,
+                createdAt: true,
+                updatedAt: true,
+                profile: {
+                    select: {
+                        phoneNumber: true,
+                        bio: true,
+                        address: true,
+                    }
+                }
+            },
         });
 
         return Response.json(user, { status: 200 })

@@ -1,1 +1,3 @@
-export { getUserById } from './get-user'
+export { getUserById } from './get-user';
+export { getAllUser } from './get-user-list';
+export { updateUser } from './update-user';

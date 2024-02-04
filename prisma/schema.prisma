@@ -11,14 +11,16 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  email    String   @unique
-  password String
-  role     Role     @default(USER)
-  name     String?
-  avatar   String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  name      String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   // Relation 1-1 to Profile.
-  profile  Profile?
+  profile   Profile?
 }
 
 model Profile {

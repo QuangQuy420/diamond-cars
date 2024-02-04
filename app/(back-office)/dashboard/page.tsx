@@ -1,25 +1,25 @@
 import { getUserById } from '@/app/actions/user';
 import { useHasCapability } from '@/utils';
 import * as React from 'react';
+import { CountRecord } from '@/app/(back-office)/components';
 
 export interface IDashboardProps {
 }
 
 async function getUserInfo(userId: string) {
-    const response = await getUserById(userId);
-    const user = await response.json();
-    return user;
+    const user = await getUserById(userId);
+    return await user.json();
 }
 
 export default async function Dashboard(props: IDashboardProps) {
     const session = await useHasCapability();
     // @ts-ignore
     const userInfo = await getUserInfo(session.user.id);
-    console.log('userInfo', userInfo);
 
     return (
-        <div>
-            Dashboard page ...
+        <div className='flex flex-col max-w-7xl mx-auto px-6'>
+            <h3 className='py-3 text-3xl'>Dashboard</h3>
+            <CountRecord />
         </div>
     );
 }
