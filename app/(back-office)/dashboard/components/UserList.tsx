@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react';
-import googleLogo from "@/public/google.png";
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,7 +21,7 @@ export function UserList(props: ITableProps) {
                         <div className="flex items-center text-sm">
                             <div className="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                 <Image
-                                    src={googleLogo}
+                                    src={value.avatar}
                                     alt="Picture of the author"
                                     width={32}
                                     height={32}

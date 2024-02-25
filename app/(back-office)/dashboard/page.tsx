@@ -1,7 +1,7 @@
 import { getUserById } from '@/app/actions/user';
 import { useHasCapability } from '@/utils';
 import * as React from 'react';
-import { CountRecord } from '@/app/(back-office)/components';
+import { CountRecord } from '@/app/(back-office)/dashboard/components';
 
 export interface IDashboardProps {
 }

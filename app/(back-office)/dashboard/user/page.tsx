@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UserList } from '../../components'
+import { UserList } from '@/app/(back-office)/dashboard/components';
 import { getAllUser } from '@/app/actions/user';
 
 export interface IUserProps {
