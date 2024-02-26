@@ -2,19 +2,20 @@ import { getUserById } from '@/app/actions/user';
 import { useHasCapability } from '@/utils';
 import * as React from 'react';
 import { CountRecord } from '@/app/(back-office)/dashboard/components';
+import { NextPage } from 'next';
 
-export interface IDashboardProps {
-}
+// const getUserInfo = async (userId: string) => {
+//     const user = await getUserById(userId);
+//     return await user.json();
+// }
 
-async function getUserInfo(userId: string) {
-    const user = await getUserById(userId);
-    return await user.json();
-}
-
-export default async function Dashboard(props: IDashboardProps) {
-    const session = await useHasCapability();
+/*
+ * The Dashboard page.
+ */
+const Dashboard: NextPage = async () => {
+    // const session = await useHasCapability();
     // @ts-ignore
-    const userInfo = await getUserInfo(session.user.id);
+    // const userInfo = await getUserInfo(session.user.id);
 
     return (
         <div className='flex flex-col max-w-7xl mx-auto px-6'>
@@ -23,3 +24,5 @@ export default async function Dashboard(props: IDashboardProps) {
         </div>
     );
 }
+
+export default Dashboard;

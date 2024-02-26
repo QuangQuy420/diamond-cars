@@ -1,5 +1,4 @@
 'use client'
-
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useFormState } from 'react-dom'
@@ -10,37 +9,22 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { uploadImage } from '@/libs/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Image from 'next/image';
-
-export interface IDetailUserProps {
-    userInfo: {
-        email: string,
-        name: string,
-        role: string,
-        avatar: string,
-        createAt: string,
-        updatedAt: string,
-        profile: {
-            bio: string,
-            phoneNumber: string,
-            address: string,
-        },
-    },
-    userId: string,
-}
+import { EditDetailUserProps } from '@/interfaces';
 
 const initialState = {
     message: '',
 }
 
-export function EditDetailUser(props: IDetailUserProps) {
-    const { userInfo, userId } = props;
+/**
+ * The components handle edit user.
+ */
+export const EditDetailUser: React.FC<EditDetailUserProps> = ({ userInfo, userId }) => {
     const [fileImage, setFileImage] = useState('');
     const [urlImage, setUrlImage] = useState('');
     const { pending } = useFormStatus();
     const updateUserWithId = updateUser.bind(null, userId)
     const router = useRouter();
     const [state, formAction] = useFormState(updateUserWithId, initialState);
-    console.log('123');
 
     if (state?.status === 'success') {
         router.push('/dashboard/user');
@@ -64,8 +48,6 @@ export function EditDetailUser(props: IDetailUserProps) {
     }, []);
 
     // UPLOAD IMAGE ===============================================
-
-
     const handleDrop = async (e: any, type: string) => {
         const dateUpload = new Date();
         console.log('dateUpload', dateUpload.toString().replaceAll(" ", ""));

@@ -1,16 +1,39 @@
 'use client'
-
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { ModalConfirm } from '@/components';
+import { ModalConfirmProps, UserListProps } from '@/interfaces';
 
-export interface ITableProps {
-    userList: any,
-}
+/**
+ * The list of user that display in dashboard page.
+ */
+export const UserList: React.FC<UserListProps> = ({ userList }) => {
+    const [showModal, setShowModal] = useState<boolean>(false);
 
-export function UserList(props: ITableProps) {
+    /**
+     * The function handle show modal confirm when the users want to delete user.
+     * 
+     * @param value true/false.
+     */
+    const toggleModal = (value: boolean) => {
+        setShowModal(value);
+    };
 
-    const slideUserList = props.userList.map((value, index) => {
+    const defaultProps: ModalConfirmProps = {
+        title: 'Are you sure',
+        content: 'Are you sure about that?',
+        confirm: 'Yes',
+        cancel: 'No',
+        showModal: showModal,
+        toggleModal: toggleModal,
+    }
+
+    /**
+     * The function render list user to html.
+     */
+    const slideUserList = userList.map((value: any, index: number) => {
         const date = value.updatedAt > value.createdAt ? value.updatedAt : value.createdAt;
         const userUpdateDate = new Date(Date.parse(date)).toISOString().substring(0, 10);
 
@@ -53,7 +76,7 @@ export function UserList(props: ITableProps) {
                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                 </svg>
                             </Link>
-                            <button className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+                            <button onClick={() => { toggleModal(true) }} className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
                                 <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd"></path>
                                 </svg>
@@ -81,6 +104,7 @@ export function UserList(props: ITableProps) {
                     {slideUserList}
                 </table>
             </div>
+            {showModal && <ModalConfirm {...defaultProps} />}
         </div>
     );
 }

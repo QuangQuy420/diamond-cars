@@ -1,7 +1,9 @@
-export interface ICountRecordProps {
-}
+import React from "react";
 
-export function CountRecord(props: ICountRecordProps) {
+/**
+ * The user list that display in dashboard page.
+ */
+export const CountRecord: React.FC = () => {
     return (
         <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
             <div className="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react';
 import { SubmitButton } from '@/app/(auth)/components/submitButton';
 import { signUp } from '@/app/actions/auth';
@@ -7,9 +6,9 @@ import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
 
 /**
- * The signup form.
+ * The signUp form.
  */
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
     const initialState = {
         message: null,
     }

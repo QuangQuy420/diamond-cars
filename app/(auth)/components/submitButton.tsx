@@ -1,12 +1,11 @@
 'use client'
-
+import { SubmitButtonProps } from '@/interfaces';
 import { useFormStatus } from 'react-dom'
 
 /**
  * The submit button.
  */
-export function SubmitButton(props) {
-    const { typeSubmit } = props;
+export const SubmitButton: React.FC<SubmitButtonProps> = ({ typeSubmit }) => {
     const { pending } = useFormStatus()
 
     return (

@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react';
 import { SubmitButton } from '@/app/(auth)/components/submitButton';
 import { login } from '@/app/actions/auth';
@@ -9,7 +8,7 @@ import { GoogleSignInButton, GithubSignInButton } from './authButton';
 /**
  * The login form.
  */
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
     const initialState = {
         message: null,
     }

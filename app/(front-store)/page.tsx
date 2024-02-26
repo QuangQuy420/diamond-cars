@@ -1,12 +1,15 @@
+import { NextPage } from 'next';
 import * as React from 'react';
 
-export interface IHomeProps {
-}
-
-export default function Home(props: IHomeProps) {
+/*
+ * The Home page of user.
+ */
+const Home: NextPage = () => {
     return (
         <div>
             Home page ...
         </div>
     );
 }
+
+export default Home;

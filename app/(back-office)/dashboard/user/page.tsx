@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { UserList } from '@/app/(back-office)/dashboard/components';
 import { getAllUser } from '@/app/actions/user';
+import { NextPage } from 'next';
 
-export interface IUserProps {
-}
-
+/**
+ * The function get list user to display.
+ * 
+ * @returns The list of user.
+ */
 async function getUserList() {
     const userList = await getAllUser();
     return userList.json();
 }
 
-export default async function User(props: IUserProps) {
+/*
+ * The User page.
+ */
+const User: NextPage = async () => {
     const userList = await getUserList();
 
     return (
@@ -20,3 +26,5 @@ export default async function User(props: IUserProps) {
         </div>
     );
 }
+
+export default User;

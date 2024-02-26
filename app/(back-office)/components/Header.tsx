@@ -1,15 +1,14 @@
 'use client'
-
 import { getSession, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import googleLogo from "@/public/google.png";
 
-export interface IHeaderProps {
-}
-
-export function Header(props: IHeaderProps) {
+/*
+ * The header of Dashboard page.
+ */
+export const Header: React.FC = () => {
     const [userInfo, setUserInfo] = useState({})
 
     useEffect(() => {

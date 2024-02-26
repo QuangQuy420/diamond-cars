@@ -1,10 +1,10 @@
-import { useLoginRequiredServer } from '@/utils';
+import { NextPage } from 'next';
 import SignUpForm from './components/SignUpForm'
 
 /**
  * The SignUp page.
  */
-const SignUp = async () => {
+const SignUp: NextPage = async () => {
     return (
         <SignUpForm />
     );

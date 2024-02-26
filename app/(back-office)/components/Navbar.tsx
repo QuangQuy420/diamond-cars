@@ -1,13 +1,11 @@
 'use client'
-
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as React from 'react';
 
-export interface INavbarProps {
-}
-
-export function Navbar(props: INavbarProps) {
+/*
+ * The navbar of dashboard page.
+ */
+export const Navbar: React.FC = () => {
     return (
         <div className="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
             <h3 className='px-6 py-3 text-2xl'>Diamond Cars</h3>

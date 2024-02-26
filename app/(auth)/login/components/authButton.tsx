@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 /**
  * The google sign in button and handle login.
  */
-export function GoogleSignInButton() {
+export const GoogleSignInButton: React.FC = () => {
     const handleClick = (e) => {
         e.preventDefault();
         signIn("google");
@@ -28,7 +28,7 @@ export function GoogleSignInButton() {
 /**
  * The github sign in button and handle login.
  */
-export function GithubSignInButton() {
+export const GithubSignInButton: React.FC = () => {
     const handleClick = (e) => {
         e.preventDefault();
         signIn("github");
