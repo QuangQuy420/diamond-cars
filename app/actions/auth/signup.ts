@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache";
  * @param {Object} formData The form data containing email, password, and password confirmation fields.
  * @returns {{message: string, errors: ZodError[]|string, status: string}}
  */
-export async function signUp(prevState, formData: FormData) {
+export const signUp = async (prevState, formData: FormData) => {
     const result = SignUpSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -39,15 +39,13 @@ export async function signUp(prevState, formData: FormData) {
     }
 
     try {
-        console.log('hehehehhee');
-
         const password = await bcrypt.hash(result.data.password, 10);
         const newUser = await prisma.user.create({
             data: {
                 email: result.data.email,
                 password: password,
                 name: result.data.email,
-                avatar: 'abcd',
+                avatar: 'https://firebasestorage.googleapis.com/v0/b/diamond-cars-9422f.appspot.com/o/users%2Favatars%2Favatar_default.jpg?alt=media&token=eb46469b-7bdf-46d1-a0d1-8dee71ce1a41',
                 profile: {
                     create: {
                         phoneNumber: '0385610163',

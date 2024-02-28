@@ -4,8 +4,15 @@ import { revalidatePath } from 'next/cache';
 import prisma from '../../../prisma/db'
 import { UpdateUserSchema } from "@/prisma/zod";
 
-
-export async function updateUser(userId, prevState, formData: FormData) {
+/**
+ * The function handle update user by Id.
+ * 
+ * @param userId 
+ * @param prevState 
+ * @param formData 
+ * @returns User after update.
+ */
+export const updateUser = async (userId, prevState, formData: FormData) => {
     const result = UpdateUserSchema.safeParse({
         name: formData.get('name'),
         role: formData.get('role'),

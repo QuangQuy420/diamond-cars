@@ -22,12 +22,13 @@ export const UserList: React.FC<UserListProps> = ({ userList }) => {
     };
 
     const defaultProps: ModalConfirmProps = {
-        title: 'Are you sure',
-        content: 'Are you sure about that?',
+        title: 'Are you sure you want to delete this user?',
+        content: 'Deleting a user is irreversible and will permanently remove their account and all associated data. Are you sure you want to proceed?',
         confirm: 'Yes',
         cancel: 'No',
         showModal: showModal,
         toggleModal: toggleModal,
+        userId: '',
     }
 
     /**
@@ -84,6 +85,11 @@ export const UserList: React.FC<UserListProps> = ({ userList }) => {
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td className='p-0 h-0'>
+                        {showModal && <ModalConfirm {...defaultProps} userId={value.id} />}
+                    </td>
+                </tr>
             </tbody >
         );
     })
@@ -104,7 +110,6 @@ export const UserList: React.FC<UserListProps> = ({ userList }) => {
                     {slideUserList}
                 </table>
             </div>
-            {showModal && <ModalConfirm {...defaultProps} />}
         </div>
     );
 }

@@ -1,6 +1,12 @@
-import prisma from '../../../prisma/db'
+import prisma from '../../../prisma/db';
 
-export async function getUserById(id: string) {
+/**
+ * The function handle get user information by Id.
+ * 
+ * @param id 
+ * @returns user information.
+ */
+export const getUserById = async (id: string) => {
     try {
         if (!id) {
             return Response.json('User ID is required', { status: 400 })

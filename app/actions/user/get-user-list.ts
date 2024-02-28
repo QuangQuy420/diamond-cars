@@ -1,6 +1,12 @@
 import prisma from '../../../prisma/db'
 
-export async function getAllUser() {
+
+/**
+ * The function handle get all user.
+ * 
+ * @returns user list.
+ */
+export const getAllUser = async () => {
     try {
         const userList = await prisma.user.findMany({
             include: {

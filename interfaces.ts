@@ -9,6 +9,7 @@ export interface ModalConfirmProps {
     cancel?: string,
     showModal: boolean,
     toggleModal: (value: boolean) => void,
+    userId: string,
 }
 
 export interface UserListProps {
